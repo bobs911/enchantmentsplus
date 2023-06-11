@@ -1,29 +1,31 @@
 {
   "schemaVersion": 1,
   "id": "enchantmentsplus",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "name": "EnchantmentsPlus",
+  "description": "A powerful and interesting mod that adds several new and useful enchants to Minecraft!",
   "authors": [
-    "super, MCreator"
+    "Herculuke"
   ],
   "contact": {
-    "homepage": "https://mcreator.net",
+    "homepage": "https://www.youtube.com/channel/UCxiniYCfcBWNSVWPLbpFzHQ?view_as=subscriber",
     "sources": ""
   },
-  "license": "Academic Free License v3.0",
+  "license": "All Rights Reserved",
+  "icon": "assets/enchantmentsplus/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.mcreator.enchantmentsplus.EnchantmentsplusMod"
+      "net.herculuke.enchantmentsplus.EnchantmentsplusMod"
     ],
     "client": [
-      "net.mcreator.enchantmentsplus.ClientInit"
+      "net.herculuke.enchantmentsplus.ClientInit"
     ]
   },
   "depends": {
-    "fabricloader": ">=0.14.21",
+    "fabricloader": ">=0.14.9",
     "fabric": "*",
-    "minecraft": "~1.20",
+    "minecraft": "~1.19",
     "java": ">=17"
   }
 }
