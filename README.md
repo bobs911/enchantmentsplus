@@ -4,8 +4,8 @@ A powerful and interesting mod that adds several new and useful enchants to Mine
 
 This mod has been first released to the public on the 10th of June 2023 and will be the most commonly used and integrated enchantment mod of all time.
 
-This mod is for **MOSTLY FABRIC** and will only be maintained in that environment by me. (Herculuke)
-Only very occasional forge versions will be released
+This mod is for **FORGE ONLY** and will only be maintained in that environment by me. (Herculuke)
+Only very occasional fabric versions may be released
 
 
 
