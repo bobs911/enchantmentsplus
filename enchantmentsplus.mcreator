@@ -1,0 +1,414 @@
+{
+  "mod_elements": [
+    {
+      "name": "VampiricStrike",
+      "type": "enchantment",
+      "sortid": 2,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "vampiric_strike",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/enchantment/VampiricStrikeEnchantment.java"
+        ]
+      }
+    },
+    {
+      "name": "BeforeDamageEnchantController",
+      "type": "procedure",
+      "sortid": 5,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "before_damage_enchant_controller",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/procedures/BeforeDamageEnchantControllerProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "sourceentity",
+            "type": "entity"
+          },
+          {
+            "name": "amount",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SwiftDodge",
+      "type": "enchantment",
+      "sortid": 1,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "swift_dodge",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/enchantment/SwiftDodgeEnchantment.java"
+        ]
+      }
+    },
+    {
+      "name": "Dash",
+      "type": "enchantment",
+      "sortid": 6,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "dash",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/enchantment/DashEnchantment.java"
+        ]
+      }
+    },
+    {
+      "name": "UseEnchantAbility",
+      "type": "keybind",
+      "sortid": 13,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "use_enchant_ability",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/network/UseEnchantAbilityMessage.java"
+        ]
+      }
+    },
+    {
+      "name": "UseEnchantAbilityOnKeyPressed",
+      "type": "procedure",
+      "sortid": 7,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "use_enchant_ability_on_key_pressed",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/procedures/UseEnchantAbilityOnKeyPressedProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnderStep",
+      "type": "enchantment",
+      "sortid": 8,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "ender_step",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/enchantment/EnderStepEnchantment.java"
+        ]
+      }
+    },
+    {
+      "name": "ResetOnLogin",
+      "type": "procedure",
+      "sortid": 9,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "reset_on_login",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/procedures/ResetOnLoginProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AutoSmelt",
+      "type": "enchantment",
+      "sortid": 10,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "auto_smelt",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/enchantment/AutoSmeltEnchantment.java"
+        ]
+      }
+    },
+    {
+      "name": "MineBlockEnchantController",
+      "type": "procedure",
+      "sortid": 11,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mine_block_enchant_controller",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/procedures/MineBlockEnchantControllerProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RotateEnchantAbility",
+      "type": "keybind",
+      "sortid": 12,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "rotate_enchant_ability",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/network/RotateEnchantAbilityMessage.java"
+        ]
+      }
+    },
+    {
+      "name": "RotateEnchantAbilityOnKeyPressed",
+      "type": "procedure",
+      "sortid": 14,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "rotate_enchant_ability_on_key_pressed",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/procedures/RotateEnchantAbilityOnKeyPressedProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Cripple",
+      "type": "enchantment",
+      "sortid": 15,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cripple",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/enchantment/CrippleEnchantment.java"
+        ]
+      }
+    },
+    {
+      "name": "EveryTickEnchantManager",
+      "type": "procedure",
+      "sortid": 16,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "every_tick_enchant_manager",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/procedures/EveryTickEnchantManagerProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PhantomStrike",
+      "type": "enchantment",
+      "sortid": 17,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "phantom_strike",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/enchantment/PhantomStrikeEnchantment.java"
+        ]
+      }
+    },
+    {
+      "name": "Cloak",
+      "type": "enchantment",
+      "sortid": 19,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cloak",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/enchantment/CloakEnchantment.java"
+        ]
+      }
+    },
+    {
+      "name": "Leap",
+      "type": "enchantment",
+      "sortid": 20,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "leap",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/enchantment/LeapEnchantment.java"
+        ]
+      }
+    },
+    {
+      "name": "Blitz",
+      "type": "enchantment",
+      "sortid": 21,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "blitz",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/enchantment/BlitzEnchantment.java"
+        ]
+      }
+    }
+  ],
+  "variable_elements": [
+    {
+      "name": "abilitycooldown",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "abilityselection",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "iscrippled",
+      "type": "logic",
+      "scope": "player_persistent",
+      "value": "false"
+    },
+    {
+      "name": "cripplelocationx",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "cripplelocationy",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "cripplelocationz",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "boots",
+      "type": "itemstack",
+      "scope": "player_persistent",
+      "value": "ItemStack.EMPTY"
+    },
+    {
+      "name": "leggings",
+      "type": "itemstack",
+      "scope": "player_persistent",
+      "value": "ItemStack.EMPTY"
+    },
+    {
+      "name": "chestplate",
+      "type": "itemstack",
+      "scope": "player_persistent",
+      "value": "ItemStack.EMPTY"
+    },
+    {
+      "name": "helmet",
+      "type": "itemstack",
+      "scope": "player_persistent",
+      "value": "ItemStack.EMPTY"
+    }
+  ],
+  "sound_elements": [],
+  "language_map": {
+    "en_us": {
+      "key.enchantmentsplus.use_enchant_ability": "Use Enchant Ability",
+      "enchantment.enchantmentsplus.leap": "Leap",
+      "enchantment.enchantmentsplus.cloak": "Cloak",
+      "enchantment.enchantmentsplus.cripple": "Cripple Player",
+      "enchantment.enchantmentsplus.vampiric_strike": "Vampiric Strike",
+      "enchantment.enchantmentsplus.blitz": "Blitz",
+      "enchantment.enchantmentsplus.swift_dodge": "Swift Dodge",
+      "enchantment.enchantmentsplus.auto_smelt": "Auto Smelt",
+      "enchantment.enchantmentsplus.dash": "Dash",
+      "key.enchantmentsplus.rotate_enchant_ability": "Rotate Enchant Ability",
+      "enchantment.enchantmentsplus.ender_step": "Ender Step",
+      "enchantment.enchantmentsplus.phantom_strike": "Phantom Strike"
+    }
+  },
+  "foldersRoot": {
+    "name": "~",
+    "children": []
+  },
+  "workspaceSettings": {
+    "modid": "enchantmentsplus",
+    "modName": "EnchantmentsPlus",
+    "version": "0.1.0",
+    "description": "A powerful and interesting mod that adds several new and useful enchants to Minecraft!",
+    "author": "Herculuke",
+    "websiteURL": "https://www.youtube.com/channel/UCxiniYCfcBWNSVWPLbpFzHQ?view_as\u003dsubscriber",
+    "license": "All Rights Reserved",
+    "disableForgeVersionCheck": true,
+    "serverSideOnly": false,
+    "modPicture": "enchantmentspluslogo",
+    "requiredMods": [],
+    "dependencies": [],
+    "dependants": [],
+    "mcreatorDependencies": [],
+    "currentGenerator": "forge-1.19.4",
+    "credits": "All Credits To Me :)",
+    "modElementsPackage": "net.herculuke.enchantmentsplus",
+    "lockBaseModFiles": false
+  },
+  "mcreatorVersion": 202300223515
+}

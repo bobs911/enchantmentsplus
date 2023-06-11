@@ -1,0 +1,12 @@
+{
+  "_fv": 43,
+  "_type": "keybind",
+  "definition": {
+    "triggerKey": "Z",
+    "keyBindingName": "Rotate Enchant Ability",
+    "keyBindingCategoryKey": "multiplayer",
+    "onKeyPressed": {
+      "name": "RotateEnchantAbilityOnKeyPressed"
+    }
+  }
+}

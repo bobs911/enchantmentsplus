@@ -1,0 +1,12 @@
+{
+  "_fv": 43,
+  "_type": "keybind",
+  "definition": {
+    "triggerKey": "X",
+    "keyBindingName": "Use Enchant Ability",
+    "keyBindingCategoryKey": "multiplayer",
+    "onKeyPressed": {
+      "name": "UseEnchantAbilityOnKeyPressed"
+    }
+  }
+}

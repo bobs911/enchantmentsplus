@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "enchantmentsplus",
+  "version": "1.0.0",
+  "name": "EnchantmentsPlus",
+  "authors": [
+    "super, MCreator"
+  ],
+  "contact": {
+    "homepage": "https://mcreator.net",
+    "sources": ""
+  },
+  "license": "Academic Free License v3.0",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.mcreator.enchantmentsplus.EnchantmentsplusMod"
+    ],
+    "client": [
+      "net.mcreator.enchantmentsplus.ClientInit"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "fabric": "*",
+    "minecraft": "~1.20",
+    "java": ">=17"
+  }
+}

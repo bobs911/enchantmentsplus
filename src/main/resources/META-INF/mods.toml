@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[45,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="enchantmentsplus"
+version="0.1.0"
+displayName="EnchantmentsPlus"
+credits="All Credits To Me :)"
+displayURL="https://www.youtube.com/channel/UCxiniYCfcBWNSVWPLbpFzHQ?view_as=subscriber"
+logoFile="logo.png"
+authors="Herculuke"
+description="A powerful and interesting mod that adds several new and useful enchants to Minecraft!"
+
+[[dependencies.enchantmentsplus]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.4]"
+    ordering="NONE"
+    side="BOTH"
+
+
+
+
