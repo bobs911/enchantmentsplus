@@ -1,4 +1,4 @@
-# enchantmentsplus
+# Enchantments Plus
 A powerful and interesting mod that adds several new and useful enchants to Minecraft!
 
 
