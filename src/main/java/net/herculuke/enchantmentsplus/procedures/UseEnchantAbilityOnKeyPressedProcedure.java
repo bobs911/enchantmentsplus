@@ -1,9 +1,6 @@
 package net.herculuke.enchantmentsplus.procedures;
 
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.AABB;
@@ -24,7 +21,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
@@ -32,6 +29,7 @@ import net.minecraft.commands.arguments.EntityAnchorArgument;
 
 import net.herculuke.enchantmentsplus.network.EnchantmentsplusModVariables;
 import net.herculuke.enchantmentsplus.init.EnchantmentsplusModEnchantments;
+import net.herculuke.enchantmentsplus.EnchantmentsplusMod;
 
 import java.util.Comparator;
 
@@ -83,7 +81,7 @@ public class UseEnchantAbilityOnKeyPressedProcedure {
 					entity.lookAt(EntityAnchorArgument.Anchor.EYES, new Vec3(oldlookx, oldlooky, oldlookz));
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
-							_level.playSound(null, new BlockPos(entity.getX(), entity.getY(), entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.enderman.teleport")), SoundSource.PLAYERS, 2, 1);
+							_level.playSound(null, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.enderman.teleport")), SoundSource.PLAYERS, 2, 1);
 						} else {
 							_level.playLocalSound((entity.getX()), (entity.getY()), (entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.enderman.teleport")), SoundSource.PLAYERS, 2, 1, false);
 						}
@@ -97,42 +95,20 @@ public class UseEnchantAbilityOnKeyPressedProcedure {
 							capability.syncPlayerVariables(entity);
 						});
 					}
-					new Object() {
-						private int ticks = 0;
-						private float waitTicks;
-						private LevelAccessor world;
-
-						public void start(LevelAccessor world, int waitTicks) {
-							this.waitTicks = waitTicks;
-							MinecraftForge.EVENT_BUS.register(this);
-							this.world = world;
+					EnchantmentsplusMod.queueServerWork(200, () -> {
+						{
+							double _setval = 0;
+							entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+								capability.abilitycooldown = _setval;
+								capability.syncPlayerVariables(entity);
+							});
 						}
-
-						@SubscribeEvent
-						public void tick(TickEvent.ServerTickEvent event) {
-							if (event.phase == TickEvent.Phase.END) {
-								this.ticks += 1;
-								if (this.ticks >= this.waitTicks)
-									run();
-							}
-						}
-
-						private void run() {
-							{
-								double _setval = 0;
-								entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-									capability.abilitycooldown = _setval;
-									capability.syncPlayerVariables(entity);
-								});
-							}
-							MinecraftForge.EVENT_BUS.unregister(this);
-						}
-					}.start(world, 200);
+					});
 				}
 			}
 		} else if ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).abilityselection == 1) {
 			if (entity instanceof Player _player && !_player.level.isClientSide())
-				_player.displayClientMessage(new TextComponent("Coming Soon"), false);
+				_player.displayClientMessage(Component.literal("Coming Soon"), false);
 		} else if ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).abilityselection == 2) {
 			if (EnchantmentHelper.getItemEnchantmentLevel(EnchantmentsplusModEnchantments.LEAP.get(), (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)) != 0) {
 				if ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).abilitycooldown == 0) {
@@ -150,7 +126,7 @@ public class UseEnchantAbilityOnKeyPressedProcedure {
 					}
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
-							_level.playSound(null, new BlockPos(entity.getX(), entity.getY(), entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.slime_block.place")), SoundSource.PLAYERS, 2, 1);
+							_level.playSound(null, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.slime_block.place")), SoundSource.PLAYERS, 2, 1);
 						} else {
 							_level.playLocalSound((entity.getX()), (entity.getY()), (entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.slime_block.place")), SoundSource.PLAYERS, 2, 1, false);
 						}
@@ -164,37 +140,15 @@ public class UseEnchantAbilityOnKeyPressedProcedure {
 							capability.syncPlayerVariables(entity);
 						});
 					}
-					new Object() {
-						private int ticks = 0;
-						private float waitTicks;
-						private LevelAccessor world;
-
-						public void start(LevelAccessor world, int waitTicks) {
-							this.waitTicks = waitTicks;
-							MinecraftForge.EVENT_BUS.register(this);
-							this.world = world;
+					EnchantmentsplusMod.queueServerWork(200, () -> {
+						{
+							double _setval = 0;
+							entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+								capability.abilitycooldown = _setval;
+								capability.syncPlayerVariables(entity);
+							});
 						}
-
-						@SubscribeEvent
-						public void tick(TickEvent.ServerTickEvent event) {
-							if (event.phase == TickEvent.Phase.END) {
-								this.ticks += 1;
-								if (this.ticks >= this.waitTicks)
-									run();
-							}
-						}
-
-						private void run() {
-							{
-								double _setval = 0;
-								entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-									capability.abilitycooldown = _setval;
-									capability.syncPlayerVariables(entity);
-								});
-							}
-							MinecraftForge.EVENT_BUS.unregister(this);
-						}
-					}.start(world, 200);
+					});
 				}
 			}
 			if (EnchantmentHelper.getItemEnchantmentLevel(EnchantmentsplusModEnchantments.DASH.get(), (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)) != 0) {
@@ -213,7 +167,7 @@ public class UseEnchantAbilityOnKeyPressedProcedure {
 					}
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
-							_level.playSound(null, new BlockPos(entity.getX(), entity.getY(), entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.composter.fill")), SoundSource.PLAYERS, 2, 1);
+							_level.playSound(null, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.composter.fill")), SoundSource.PLAYERS, 2, 1);
 						} else {
 							_level.playLocalSound((entity.getX()), (entity.getY()), (entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.composter.fill")), SoundSource.PLAYERS, 2, 1, false);
 						}
@@ -227,37 +181,15 @@ public class UseEnchantAbilityOnKeyPressedProcedure {
 							capability.syncPlayerVariables(entity);
 						});
 					}
-					new Object() {
-						private int ticks = 0;
-						private float waitTicks;
-						private LevelAccessor world;
-
-						public void start(LevelAccessor world, int waitTicks) {
-							this.waitTicks = waitTicks;
-							MinecraftForge.EVENT_BUS.register(this);
-							this.world = world;
+					EnchantmentsplusMod.queueServerWork(200, () -> {
+						{
+							double _setval = 0;
+							entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+								capability.abilitycooldown = _setval;
+								capability.syncPlayerVariables(entity);
+							});
 						}
-
-						@SubscribeEvent
-						public void tick(TickEvent.ServerTickEvent event) {
-							if (event.phase == TickEvent.Phase.END) {
-								this.ticks += 1;
-								if (this.ticks >= this.waitTicks)
-									run();
-							}
-						}
-
-						private void run() {
-							{
-								double _setval = 0;
-								entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-									capability.abilitycooldown = _setval;
-									capability.syncPlayerVariables(entity);
-								});
-							}
-							MinecraftForge.EVENT_BUS.unregister(this);
-						}
-					}.start(world, 200);
+					});
 				}
 			}
 			if (EnchantmentHelper.getItemEnchantmentLevel(EnchantmentsplusModEnchantments.ENDER_STEP.get(), (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)) != 0) {
@@ -296,7 +228,7 @@ public class UseEnchantAbilityOnKeyPressedProcedure {
 					}
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
-							_level.playSound(null, new BlockPos(entity.getX(), entity.getY(), entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.shulker.teleport")), SoundSource.PLAYERS, 2, 1);
+							_level.playSound(null, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.shulker.teleport")), SoundSource.PLAYERS, 2, 1);
 						} else {
 							_level.playLocalSound((entity.getX()), (entity.getY()), (entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.shulker.teleport")), SoundSource.PLAYERS, 2, 1, false);
 						}
@@ -310,42 +242,20 @@ public class UseEnchantAbilityOnKeyPressedProcedure {
 							capability.syncPlayerVariables(entity);
 						});
 					}
-					new Object() {
-						private int ticks = 0;
-						private float waitTicks;
-						private LevelAccessor world;
-
-						public void start(LevelAccessor world, int waitTicks) {
-							this.waitTicks = waitTicks;
-							MinecraftForge.EVENT_BUS.register(this);
-							this.world = world;
+					EnchantmentsplusMod.queueServerWork(200, () -> {
+						{
+							double _setval = 0;
+							entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+								capability.abilitycooldown = _setval;
+								capability.syncPlayerVariables(entity);
+							});
 						}
-
-						@SubscribeEvent
-						public void tick(TickEvent.ServerTickEvent event) {
-							if (event.phase == TickEvent.Phase.END) {
-								this.ticks += 1;
-								if (this.ticks >= this.waitTicks)
-									run();
-							}
-						}
-
-						private void run() {
-							{
-								double _setval = 0;
-								entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-									capability.abilitycooldown = _setval;
-									capability.syncPlayerVariables(entity);
-								});
-							}
-							MinecraftForge.EVENT_BUS.unregister(this);
-						}
-					}.start(world, 200);
+					});
 				}
 			}
 		} else if ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).abilityselection == 3) {
 			if (entity instanceof Player _player && !_player.level.isClientSide())
-				_player.displayClientMessage(new TextComponent("Coming Soon"), false);
+				_player.displayClientMessage(Component.literal("Coming Soon"), false);
 		} else if ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).abilityselection == 4) {
 			if (EnchantmentHelper.getItemEnchantmentLevel(EnchantmentsplusModEnchantments.CLOAK.get(), (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)) != 0) {
 				if ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).abilitycooldown == 0) {
@@ -445,7 +355,7 @@ public class UseEnchantAbilityOnKeyPressedProcedure {
 					}
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
-							_level.playSound(null, new BlockPos(entity.getX(), entity.getY(), entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.amethyst_cluster.place")), SoundSource.PLAYERS, 2, 1);
+							_level.playSound(null, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.amethyst_cluster.place")), SoundSource.PLAYERS, 2, 1);
 						} else {
 							_level.playLocalSound((entity.getX()), (entity.getY()), (entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.amethyst_cluster.place")), SoundSource.PLAYERS, 2, 1, false);
 						}
@@ -459,78 +369,56 @@ public class UseEnchantAbilityOnKeyPressedProcedure {
 							capability.syncPlayerVariables(entity);
 						});
 					}
-					new Object() {
-						private int ticks = 0;
-						private float waitTicks;
-						private LevelAccessor world;
-
-						public void start(LevelAccessor world, int waitTicks) {
-							this.waitTicks = waitTicks;
-							MinecraftForge.EVENT_BUS.register(this);
-							this.world = world;
+					EnchantmentsplusMod.queueServerWork(200, () -> {
+						{
+							double _setval = 0;
+							entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+								capability.abilitycooldown = _setval;
+								capability.syncPlayerVariables(entity);
+							});
 						}
-
-						@SubscribeEvent
-						public void tick(TickEvent.ServerTickEvent event) {
-							if (event.phase == TickEvent.Phase.END) {
-								this.ticks += 1;
-								if (this.ticks >= this.waitTicks)
-									run();
+						{
+							Entity _entity = entity;
+							if (_entity instanceof Player _player) {
+								_player.getInventory().armor.set(0, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).boots));
+								_player.getInventory().setChanged();
+							} else if (_entity instanceof LivingEntity _living) {
+								_living.setItemSlot(EquipmentSlot.FEET, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).boots));
 							}
 						}
-
-						private void run() {
-							{
-								double _setval = 0;
-								entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-									capability.abilitycooldown = _setval;
-									capability.syncPlayerVariables(entity);
-								});
+						{
+							Entity _entity = entity;
+							if (_entity instanceof Player _player) {
+								_player.getInventory().armor.set(1, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).leggings));
+								_player.getInventory().setChanged();
+							} else if (_entity instanceof LivingEntity _living) {
+								_living.setItemSlot(EquipmentSlot.LEGS, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).leggings));
 							}
-							{
-								Entity _entity = entity;
-								if (_entity instanceof Player _player) {
-									_player.getInventory().armor.set(0, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).boots));
-									_player.getInventory().setChanged();
-								} else if (_entity instanceof LivingEntity _living) {
-									_living.setItemSlot(EquipmentSlot.FEET, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).boots));
-								}
-							}
-							{
-								Entity _entity = entity;
-								if (_entity instanceof Player _player) {
-									_player.getInventory().armor.set(1, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).leggings));
-									_player.getInventory().setChanged();
-								} else if (_entity instanceof LivingEntity _living) {
-									_living.setItemSlot(EquipmentSlot.LEGS, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).leggings));
-								}
-							}
-							{
-								Entity _entity = entity;
-								if (_entity instanceof Player _player) {
-									_player.getInventory().armor.set(2, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).chestplate));
-									_player.getInventory().setChanged();
-								} else if (_entity instanceof LivingEntity _living) {
-									_living.setItemSlot(EquipmentSlot.CHEST, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).chestplate));
-								}
-							}
-							{
-								Entity _entity = entity;
-								if (_entity instanceof Player _player) {
-									_player.getInventory().armor.set(3, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).helmet));
-									_player.getInventory().setChanged();
-								} else if (_entity instanceof LivingEntity _living) {
-									_living.setItemSlot(EquipmentSlot.HEAD, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).helmet));
-								}
-							}
-							MinecraftForge.EVENT_BUS.unregister(this);
 						}
-					}.start(world, 200);
+						{
+							Entity _entity = entity;
+							if (_entity instanceof Player _player) {
+								_player.getInventory().armor.set(2, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).chestplate));
+								_player.getInventory().setChanged();
+							} else if (_entity instanceof LivingEntity _living) {
+								_living.setItemSlot(EquipmentSlot.CHEST, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).chestplate));
+							}
+						}
+						{
+							Entity _entity = entity;
+							if (_entity instanceof Player _player) {
+								_player.getInventory().armor.set(3, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).helmet));
+								_player.getInventory().setChanged();
+							} else if (_entity instanceof LivingEntity _living) {
+								_living.setItemSlot(EquipmentSlot.HEAD, ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).helmet));
+							}
+						}
+					});
 				}
 			}
 		} else if ((entity.getCapability(EnchantmentsplusModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new EnchantmentsplusModVariables.PlayerVariables())).abilityselection == 5) {
 			if (entity instanceof Player _player && !_player.level.isClientSide())
-				_player.displayClientMessage(new TextComponent("Coming Soon"), false);
+				_player.displayClientMessage(Component.literal("Coming Soon"), false);
 		}
 	}
 }

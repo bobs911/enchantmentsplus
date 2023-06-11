@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[40,)"
+loaderVersion="[45,)"
 license="All Rights Reserved"
 
 [[mods]]
@@ -15,7 +15,7 @@ description="A powerful and interesting mod that adds several new and useful enc
 [[dependencies.enchantmentsplus]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.2]"
+    versionRange="[1.19.4]"
     ordering="NONE"
     side="BOTH"
 
