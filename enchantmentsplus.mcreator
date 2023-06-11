@@ -405,7 +405,7 @@
     "dependencies": [],
     "dependants": [],
     "mcreatorDependencies": [],
-    "currentGenerator": "forge-1.19.4",
+    "currentGenerator": "forge-1.18.2",
     "credits": "All Credits To Me :)",
     "modElementsPackage": "net.herculuke.enchantmentsplus",
     "lockBaseModFiles": false

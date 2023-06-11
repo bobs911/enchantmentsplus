@@ -15,8 +15,8 @@ import javax.annotation.Nullable;
 @Mod.EventBusSubscriber
 public class EveryTickEnchantManagerProcedure {
 	@SubscribeEvent
-	public static void onEntityTick(LivingEvent.LivingTickEvent event) {
-		execute(event, event.getEntity());
+	public static void onEntityTick(LivingEvent.LivingUpdateEvent event) {
+		execute(event, event.getEntityLiving());
 	}
 
 	public static void execute(Entity entity) {
