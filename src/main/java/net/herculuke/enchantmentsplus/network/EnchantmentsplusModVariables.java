@@ -77,6 +77,7 @@ public class EnchantmentsplusModVariables {
 			clone.leggings = original.leggings;
 			clone.chestplate = original.chestplate;
 			clone.helmet = original.helmet;
+			clone.blocktobreak = original.blocktobreak;
 			if (!event.isWasDeath()) {
 			}
 		}
@@ -123,6 +124,7 @@ public class EnchantmentsplusModVariables {
 		public ItemStack leggings = ItemStack.EMPTY;
 		public ItemStack chestplate = ItemStack.EMPTY;
 		public ItemStack helmet = ItemStack.EMPTY;
+		public double blocktobreak = 0;
 
 		public void syncPlayerVariables(Entity entity) {
 			if (entity instanceof ServerPlayer serverPlayer)
@@ -141,6 +143,7 @@ public class EnchantmentsplusModVariables {
 			nbt.put("leggings", leggings.save(new CompoundTag()));
 			nbt.put("chestplate", chestplate.save(new CompoundTag()));
 			nbt.put("helmet", helmet.save(new CompoundTag()));
+			nbt.putDouble("blocktobreak", blocktobreak);
 			return nbt;
 		}
 
@@ -156,6 +159,7 @@ public class EnchantmentsplusModVariables {
 			leggings = ItemStack.of(nbt.getCompound("leggings"));
 			chestplate = ItemStack.of(nbt.getCompound("chestplate"));
 			helmet = ItemStack.of(nbt.getCompound("helmet"));
+			blocktobreak = nbt.getDouble("blocktobreak");
 		}
 	}
 
@@ -190,6 +194,7 @@ public class EnchantmentsplusModVariables {
 					variables.leggings = message.data.leggings;
 					variables.chestplate = message.data.chestplate;
 					variables.helmet = message.data.helmet;
+					variables.blocktobreak = message.data.blocktobreak;
 				}
 			});
 			context.setPacketHandled(true);

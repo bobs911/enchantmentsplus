@@ -305,6 +305,38 @@
           "src/main/java/net/herculuke/enchantmentsplus/enchantment/BlitzEnchantment.java"
         ]
       }
+    },
+    {
+      "name": "ChainMiner",
+      "type": "enchantment",
+      "sortid": 22,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "chain_miner",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/enchantment/ChainMinerEnchantment.java"
+        ]
+      }
+    },
+    {
+      "name": "ActualBlockMiningManager",
+      "type": "procedure",
+      "sortid": 24,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "actual_block_mining_manager",
+      "metadata": {
+        "files": [
+          "src/main/java/net/herculuke/enchantmentsplus/procedures/ActualBlockMiningManagerProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
     }
   ],
   "variable_elements": [
@@ -367,6 +399,12 @@
       "type": "itemstack",
       "scope": "player_persistent",
       "value": "ItemStack.EMPTY"
+    },
+    {
+      "name": "blocktobreak",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
     }
   ],
   "sound_elements": [],
@@ -383,6 +421,7 @@
       "enchantment.enchantmentsplus.dash": "Dash",
       "key.enchantmentsplus.rotate_enchant_ability": "Rotate Enchant Ability",
       "enchantment.enchantmentsplus.ender_step": "Ender Step",
+      "enchantment.enchantmentsplus.chain_miner": "Chain Miner",
       "enchantment.enchantmentsplus.phantom_strike": "Phantom Strike"
     }
   },

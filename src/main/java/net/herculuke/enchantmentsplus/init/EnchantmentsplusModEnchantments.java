@@ -18,6 +18,7 @@ import net.herculuke.enchantmentsplus.enchantment.EnderStepEnchantment;
 import net.herculuke.enchantmentsplus.enchantment.DashEnchantment;
 import net.herculuke.enchantmentsplus.enchantment.CrippleEnchantment;
 import net.herculuke.enchantmentsplus.enchantment.CloakEnchantment;
+import net.herculuke.enchantmentsplus.enchantment.ChainMinerEnchantment;
 import net.herculuke.enchantmentsplus.enchantment.BlitzEnchantment;
 import net.herculuke.enchantmentsplus.enchantment.AutoSmeltEnchantment;
 import net.herculuke.enchantmentsplus.EnchantmentsplusMod;
@@ -34,4 +35,5 @@ public class EnchantmentsplusModEnchantments {
 	public static final RegistryObject<Enchantment> CLOAK = REGISTRY.register("cloak", () -> new CloakEnchantment());
 	public static final RegistryObject<Enchantment> LEAP = REGISTRY.register("leap", () -> new LeapEnchantment());
 	public static final RegistryObject<Enchantment> BLITZ = REGISTRY.register("blitz", () -> new BlitzEnchantment());
+	public static final RegistryObject<Enchantment> CHAIN_MINER = REGISTRY.register("chain_miner", () -> new ChainMinerEnchantment());
 }
